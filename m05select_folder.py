@@ -19,7 +19,10 @@ def resource_path(relative_path):
 
 
 def debug_log(message):
-    log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kojiPDF_startup.log")
+    local_app_data = os.environ.get("LOCALAPPDATA", os.path.expanduser("~"))
+    log_dir = os.path.join(local_app_data, "kojiPDF")
+    os.makedirs(log_dir, exist_ok=True)
+    log_path = os.path.join(log_dir, "kojiPDF_startup.log")
     with open(log_path, "a", encoding="utf-8") as log_file:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_file.write(f"[{timestamp}] {message}\n")

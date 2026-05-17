@@ -44,6 +44,32 @@ kojiPDF creates a structured PDF by merging PDF files in a selected folder and a
   工事情報共有システム（ASP）向けのしおり名整形に対応します。  
   Provides bookmark name formatting for construction information-sharing systems (ASP).
 
+  - **「電脳ASPer用のしおり名に整える」をオンにした場合**
+
+    電脳ASPerから出力したファイル名には、`【本文】`、`【鑑】`、`【添付1】` のような区分名や、並び順を管理するための先頭番号が含まれることがあります。  
+    この機能をオンにすると、元のファイル自体は変更せず、結合後の PDF に付くしおり名だけを、閲覧しやすい形に整えます。
+
+    実際には、しおり名に対して次の変換を行います。
+
+    - PDF ファイル名の `【本文】` を削除します。
+    - PDF ファイル名の `【鑑】` は、最終的に `打_` に置き換えます。
+    - PDF ファイル名の `【添付1】`、`【添付2】` のような表記は、最終的なしおり名では削除します。
+    - PDF ファイル名の先頭にある `00` + 2桁番号 + `-` を削除します。  
+      例: `0001-`、`0012-`
+    - フォルダ名の先頭にある 2桁番号 + `-` を削除します。  
+      例: `01-`、`12-`
+
+    例:
+
+    - `0001-【本文】工事打合せ簿.pdf` → `工事打合せ簿.pdf`
+    - `0002-【鑑】施工計画書.pdf` → `打_施工計画書.pdf`
+    - `0003-【添付1】図面.pdf` → `図面.pdf`
+    - `01-契約関係` → `契約関係`
+
+    また、電脳ASPer向けの判別をしやすくするため、ファイルのしおりは種類に応じて色分けされます。
+
+    When enabled, this option cleans up bookmark names generated from Dennoh ASPer file names without changing the original files. It removes `【本文】`, converts `【鑑】` to `打_`, removes markers such as `【添付1】`, drops leading control numbers such as `0001-` from PDF names and `01-` from folder names, and makes the final bookmark display easier to read. It also applies bookmark colors to help distinguish file types.
+
 - **日本語・英語表示 / Japanese and English UI**  
   GUI表示を日本語と英語で切り替えできます。  
   The GUI can be switched between Japanese and English.
@@ -84,6 +110,11 @@ kojiPDF creates a structured PDF by merging PDF files in a selected folder and a
 ```bash
 pip install -r requirements.txt
 ```
+
+## プロジェクトリンク / Project Links
+
+- GitHub repository: https://github.com/Code4Construct/kojiPDFv200
+- GitHub Releases: https://github.com/Code4Construct/kojiPDFv200/releases
 
 ## 実行方法 / Usage
 

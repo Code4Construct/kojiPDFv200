@@ -115,6 +115,7 @@ pip install -r requirements.txt
 
 - GitHub repository: https://github.com/Code4Construct/kojiPDFv200
 - GitHub Releases: https://github.com/Code4Construct/kojiPDFv200/releases
+- Code signing policy: `CODE_SIGNING_POLICY.md`
 
 ## 実行方法 / Usage
 

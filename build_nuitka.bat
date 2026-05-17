@@ -3,6 +3,7 @@ setlocal
 
 python -m nuitka ^
   --standalone ^
+  --assume-yes-for-downloads ^
   --enable-plugin=tk-inter ^
   --windows-console-mode=disable ^
   --windows-icon-from-ico=smallicon_v2.ico ^
